@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mortgage-loan-injection-go
+  namespace: default
+  labels:
+    app: mortgage-loan-injection-go
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: mortgage-loan-injection-go
+  template:
+    metadata:
+      labels:
+        app: mortgage-loan-injection-go
+    spec:
+      containers:
+        - name: injection-api
+          image: tu-registro/mortgage-loan-injection-go:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8085
+          env:
+            - name: PORT
+              value: "8085"
+            - name: FINNFLOW_URL
+              value: "https://api.finnflow.com" # Cambiar según entorno
+            - name: FINNFLOW_USER
+              valueFrom:
+                secretKeyRef:
+                  name: finnflow-secrets
+                  key: username
+            - name: FINNFLOW_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: finnflow-secrets
+                  key: password
+            - name: INSECURE_SKIP_VERIFY
+              value: "false" # Set to "true" in QA environments
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "64Mi"
+            limits:
+              cpu: "250m"
+              memory: "128Mi"
+          livenessProbe:
+            httpGet:
+              path: /api-docs
+              port: 8085
+            initialDelaySeconds: 3
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /api-docs
+              port: 8085
+            initialDelaySeconds: 3
+            periodSeconds: 10
