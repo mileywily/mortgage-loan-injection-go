@@ -21,5 +21,5 @@ Se configuró **GitHub Actions** (`.github/workflows/ci.yml`). Cada vez que se i
 ## 3. Despliegue en Kubernetes (CD)
 Se generaron manifiestos nativos (`k8s/deployment.yaml` y `k8s/service.yaml`).
 *   **Resource Limits:** Maximizando la rentabilidad, los límites se establecieron en *CPU 250m* y *Memory 128Mi* (Mínimos históricos inalcanzables en JVM).
-*   **Inyección de Secretos:** Integración nativa con `SecretKeyRef` para montar el `FINNFLOW_USER` y `FINNFLOW_PASS` de forma segura.
+*   **Inyección de Secretos:** Integración nativa con `SecretKeyRef` para montar el `FINNFLOW_KEY` y `FINNFLOW_SECRET` de forma segura.
 *   **Probes de Salud:** `livenessProbe` y `readinessProbe` apuntando al endpoint ultra-rápido de memoria inyectada (`/api-docs`).
