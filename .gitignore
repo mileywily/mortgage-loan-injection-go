@@ -4,10 +4,10 @@
 *.dll
 *.so
 *.dylib
-api_mac
-mock_backend_mac
-api
-mock_backend
+/api_mac
+/mock_backend_mac
+/api
+/mock_backend
 
 # Test binary, built with `go test -c`
 *.test
