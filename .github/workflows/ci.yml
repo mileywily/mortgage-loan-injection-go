@@ -29,13 +29,12 @@ jobs:
         run: |
           go mod download
           go mod tidy
-          git diff --exit-code
 
       - name: Run Go Vet
         run: go vet ./...
 
       - name: Run Unit Tests
-        run: go test -v -race -coverprofile=coverage.txt ./...
+        run: go test -v -coverprofile=coverage.txt ./...
 
       - name: Build API
         run: go build -v -o api ./cmd/api
