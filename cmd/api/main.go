@@ -20,8 +20,8 @@ func main() {
 	if finnflowURL == "" {
 		finnflowURL = "http://localhost:8081" // fallback for local mock
 	}
-	username := os.Getenv("FINNFLOW_USER")
-	password := os.Getenv("FINNFLOW_PASS")
+	username := os.Getenv("FINNFLOW_KEY")
+	password := os.Getenv("FINNFLOW_SECRET")
 
 	// Dependencies
 	customTransport := http.DefaultTransport.(*http.Transport).Clone()

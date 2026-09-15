@@ -26,8 +26,8 @@ Start-Sleep -Seconds 2
 Write-Host "`n[2/2] Levantando API Principal en Go en el puerto 8085..." -ForegroundColor Green
 $env:PORT = "8085"
 $env:FINNFLOW_URL = "http://localhost:8081"
-$env:FINNFLOW_USER = "testuser"
-$env:FINNFLOW_PASS = "testpass"
+$env:FINNFLOW_KEY = "testuser"
+$env:FINNFLOW_SECRET = "testpass"
 
 Start-Process -NoNewWindow -FilePath "go" -ArgumentList "run", "./cmd/api"
 

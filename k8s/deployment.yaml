@@ -26,12 +26,12 @@ spec:
               value: "8085"
             - name: FINNFLOW_URL
               value: "https://api.finnflow.com" # Cambiar según entorno
-            - name: FINNFLOW_USER
+            - name: FINNFLOW_KEY
               valueFrom:
                 secretKeyRef:
                   name: finnflow-secrets
                   key: username
-            - name: FINNFLOW_PASS
+            - name: FINNFLOW_SECRET
               valueFrom:
                 secretKeyRef:
                   name: finnflow-secrets
